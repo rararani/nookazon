@@ -14,6 +14,7 @@ function HomeScreen() {
 const Stack = createStackNavigator();
 
 function App() {
+  console.log("App executed");
   return (
     <NavigationContainer>
       <Stack.Navigator>

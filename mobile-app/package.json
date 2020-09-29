@@ -13,6 +13,7 @@
     "@react-navigation/stack": "^5.9.2",
     "expo": "~39.0.2",
     "expo-status-bar": "~1.0.2",
+    "express": "^4.17.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.2.tar.gz",
@@ -25,5 +26,18 @@
   "devDependencies": {
     "@babel/core": "~7.9.0"
   },
-  "private": true
+  "private": true,
+  "name": "mobile-app",
+  "version": "1.0.0",
+  "description": "An express server for a basic checkout app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csc301-fall-2020/assignment-1-15-rajvirana-yichenesia-mobile.git"
+  },
+  "author": "Rajvi Rana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csc301-fall-2020/assignment-1-15-rajvirana-yichenesia-mobile/issues"
+  },
+  "homepage": "https://github.com/csc301-fall-2020/assignment-1-15-rajvirana-yichenesia-mobile#readme"
 }
