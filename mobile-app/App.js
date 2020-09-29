@@ -1,22 +1,22 @@
 import * as React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import { Text, Button, StyleSheet, SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import ShoppingScreen from "./app/screens/ShoppingScreen";
 
 function ShopScreen({ navigation }) {
   return (
-    <View>
+    <SafeAreaView>
       <Button
         title="Go to Checkout"
         onPress={() => navigation.navigate("Checkout")}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
 function Checkout() {
-  return <View style={styles.checkoutColor} />;
+  return <SafeAreaView style={styles.checkoutColor} />;
 }
 
 const Stack = createStackNavigator();
