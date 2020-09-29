@@ -3,12 +3,12 @@ import { View, StyleSheet, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-function ShoppingScreen({ navigation }) {
+function ShoppingScreen(props) {
   return (
     <View style={styles.container}>
       <Button
         title="Go to Checkout"
-        onPress={() => navigation.navigate("Checkout")}
+        onPress={() => props.navigate("Checkout")}
       />
     </View>
   );
