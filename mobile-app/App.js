@@ -1,16 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ShoppingScreen from "./app/screens/ShoppingScreen";
+import CheckoutScreen from "./app/screens/CheckoutScreen";
 
 export default function App() {
   console.log("App executed.");
-  return <ShoppingScreen />;
-  // return (
-  //   <View style={styles.container}>
-  //     <Text>Hello World!</Text>
-  //     <StatusBar style="auto" />
-  //   </View>
-  // );
+  return <CheckoutScreen />;
 }
 
 const styles = StyleSheet.create({
