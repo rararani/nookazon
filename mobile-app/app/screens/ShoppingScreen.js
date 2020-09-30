@@ -1,24 +1,65 @@
-import * as React from "react";
-import { View, StyleSheet, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React, { Component } from "react";
+import {
+  View,
+  StyleSheet,
+  Button,
+  SafeAreaView,
+  Text,
+  FlatList,
+  Image,
+} from "react-native";
+import { Card } from "react-native-elements";
 
-function ShoppingScreen(props) {
-  return (
-    <View style={styles.container}>
-      <Button
-        title="Go to Checkout"
-        onPress={() => props.navigation.navigate("Checkout")}
-      />
-    </View>
-  );
+import { nicknacks } from "../components/Nicknacks";
+
+export default class ShoppingScreen extends Component {
+  render() {
+    return (
+      // <View style={styles.container}>
+      //   <Products products={nicknacks} />
+      // </View>
+      <View style={styles.container}>
+        <FlatList
+          data={nicknacks}
+          renderItem={({ item }) => (
+            <Card key={item.id} style={styles.card}>
+              <Image
+                source={require("../assets/tom-nook.jpg")}
+                style={styles.image}
+              />
+              <Text style={{ marginBottom: 10, marginTop: 20 }} h2>
+                {item.name}
+              </Text>
+              <Text style={styles.price} h4>
+                {item.cost}
+              </Text>
+              <Button type="clear" title="Add to Cart" />
+            </Card>
+          )}
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
+  card: {},
+  col: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    backgroundColor: "#ffcf",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  image: {
+    width: "100%",
+    height: 200,
+    resizeMode: "cover",
+  },
+  row: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
-
-export default ShoppingScreen;

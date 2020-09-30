@@ -49,18 +49,3 @@ export default class App extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  checkoutColor: {
-    flex: 1,
-    backgroundColor: "#ffcf",
-  },
-  row: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  col: {
-    flex: 1,
-  },
-});

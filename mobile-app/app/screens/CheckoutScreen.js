@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 
-function ShoppingScreen(props) {
+function CheckoutScreen(props) {
   return <View style={styles.container} />;
 }
 
@@ -12,4 +12,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ShoppingScreen;
+export default CheckoutScreen;
