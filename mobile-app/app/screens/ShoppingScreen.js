@@ -22,7 +22,7 @@ export default class ShoppingScreen extends Component {
         <FlatList
           data={nicknacks}
           renderItem={({ item }) => (
-            <Card key={item.id} style={styles.card}>
+            <Card key={item.key} style={styles.card}>
               <Image
                 source={require("../assets/tom-nook.jpg")}
                 style={styles.image}
