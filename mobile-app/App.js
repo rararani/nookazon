@@ -1,39 +1,53 @@
-import * as React from "react";
+import React, { Component } from "react";
 import { Text, Button, StyleSheet, SafeAreaView } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  useLinkProps,
+  useNavigation,
+} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import ShoppingScreen from "./app/screens/ShoppingScreen";
+import CheckoutScreen from "./app/screens/CheckoutScreen";
 
-function ShopScreen({ navigation }) {
-  return (
-    <SafeAreaView>
-      <Button
-        title="Go to Checkout"
-        onPress={() => navigation.navigate("Checkout")}
-      />
-    </SafeAreaView>
-  );
-}
+// function ShopScreen() {
+//   return (
+//     <SafeAreaView style={styles.row}>
+//       <SafeAreaView style={styles.col}>
+//         <Text>Product here</Text>
+//       </SafeAreaView>
+//     </SafeAreaView>
+//   );
+//   const navigation = useNavigation();
+//   return <ShoppingScreen />;
+// }
 
-function Checkout() {
-  return <SafeAreaView style={styles.checkoutColor} />;
-}
+// function Checkout({ navigation }) {
+//   // return <SafeAreaView style={styles.checkoutColor} />;
+//   return <CheckoutScreen />;
+// }
 
 const Stack = createStackNavigator();
 
-function App() {
-  console.log("App executed");
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Nook's Cranny"
-        screenOptions={{ headerShown: true }}
-      >
-        <Stack.Screen name="Nook's Cranny" component={ShopScreen} />
-        <Stack.Screen name="Checkout" component={Checkout} />
-      </Stack.Navigator>
-    </NavigationContainer>
+export default class App extends Component {
+  createShoppingStack = () => (
+    <Stack.Navigator>
+      <Stack.Screen name="Shop" component={ShoppingScreen} />
+    </Stack.Navigator>
   );
+
+  render() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Nook's Cranny"
+            children={this.createShoppingStack}
+          />
+          <Stack.Screen name="Checkout" component={CheckoutScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -41,6 +55,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffcf",
   },
+  row: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  col: {
+    flex: 1,
+  },
 });
-
-export default App;

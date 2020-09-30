@@ -8,7 +8,7 @@ function ShoppingScreen(props) {
     <View style={styles.container}>
       <Button
         title="Go to Checkout"
-        onPress={() => props.navigate("Checkout")}
+        onPress={() => props.navigation.navigate("Checkout")}
       />
     </View>
   );
