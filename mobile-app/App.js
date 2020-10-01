@@ -31,7 +31,7 @@ const Stack = createStackNavigator();
 export default class App extends Component {
   createShoppingStack = () => (
     <Stack.Navigator>
-      <Stack.Screen name="Shop" component={ShoppingScreen} />
+      <Stack.Screen name="Shop" component={CheckoutScreen} />
     </Stack.Navigator>
   );
 
@@ -39,11 +39,8 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen
-            name="Nook's Cranny"
-            children={this.createShoppingStack}
-          />
-          <Stack.Screen name="Checkout" component={CheckoutScreen} />
+          <Stack.Screen name="Checkout" children={this.createShoppingStack} />
+          <Stack.Screen name="Nook's Cranny" component={CheckoutScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );
