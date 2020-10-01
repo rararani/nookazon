@@ -8,7 +8,7 @@ export default class CheckoutScreen extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-          data={nicknacks}
+          data={this.props.route.params.checkoutItems}
           renderItem={({ item }) => (
             <Card key={item.key} style={styles.card}>
               <Image

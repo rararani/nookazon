@@ -5,33 +5,40 @@ import {
   useLinkProps,
   useNavigation,
 } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+
 import { createStackNavigator } from "@react-navigation/stack";
 import ShoppingScreen from "./app/screens/ShoppingScreen";
 import CheckoutScreen from "./app/screens/CheckoutScreen";
 
-// function ShopScreen() {
-//   return (
-//     <SafeAreaView style={styles.row}>
-//       <SafeAreaView style={styles.col}>
-//         <Text>Product here</Text>
-//       </SafeAreaView>
-//     </SafeAreaView>
-//   );
-//   const navigation = useNavigation();
-//   return <ShoppingScreen />;
-// }
-
-// function Checkout({ navigation }) {
-//   // return <SafeAreaView style={styles.checkoutColor} />;
-//   return <CheckoutScreen />;
-// }
-
 const Stack = createStackNavigator();
+const myButton = (
+  <FontAwesome.Button
+    name="shopping-cart"
+    backgroundColor="#000"
+    onPress={() => alert("button!")}
+  >
+    Go to Checkout
+  </FontAwesome.Button>
+);
+
+function newButton(navigation) {
+  return (
+    <FontAwesome.Button
+      name="shopping-cart"
+      backgroundColor="#000"
+      onPress={() => navigation.navigate("Checkout")}
+    >
+      Go to Checkout
+    </FontAwesome.Button>
+  );
+}
 
 export default class App extends Component {
   createShoppingStack = () => (
     <Stack.Navigator>
-      <Stack.Screen name="Shop" component={CheckoutScreen} />
+      <Stack.Screen name="Shop" component={ShoppingScreen} />
     </Stack.Navigator>
   );
 
@@ -39,8 +46,15 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Checkout" children={this.createShoppingStack} />
-          <Stack.Screen name="Nook's Cranny" component={CheckoutScreen} />
+          <Stack.Screen
+            name="Nookazon"
+            children={this.createShoppingStack}
+            options={{
+              title: "Nookazon",
+              headerRight: () => myButton,
+            }}
+          />
+          <Stack.Screen name="Checkout" component={CheckoutScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     );

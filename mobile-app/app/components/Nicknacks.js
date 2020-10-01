@@ -21,6 +21,6 @@ export const nicknacks = [
     key: 4,
     name: "K. K. Slider",
     cost: 50000,
-    image: "../assets/moon-chair.jpg",
+    image: "../assetsmoon-chair.jpg",
   },
 ];

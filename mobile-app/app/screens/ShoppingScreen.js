@@ -12,13 +12,21 @@ import { Card } from "react-native-elements";
 
 import { nicknacks } from "../components/Nicknacks";
 
+var count = 0;
+var cartItems = [];
+
 export default class ShoppingScreen extends Component {
   render() {
     return (
-      // <View style={styles.container}>
-      //   <Products products={nicknacks} />
-      // </View>
       <View style={styles.container}>
+        <Button
+          title="checkout"
+          onPress={() =>
+            this.props.navigation.navigate("Checkout", {
+              checkoutItems: cartItems,
+            })
+          }
+        />
         <FlatList
           data={nicknacks}
           renderItem={({ item }) => (
@@ -33,7 +41,20 @@ export default class ShoppingScreen extends Component {
               <Text style={styles.price} h4>
                 {item.cost}
               </Text>
-              <Button type="clear" title="Add to Cart" />
+              <Button
+                type="clear"
+                title="Add to Cart"
+                onPress={() => (
+                  cartItems.push({
+                    key: item.key,
+                    name: item.name,
+                    cost: item.cost,
+                    image: item.image,
+                  }),
+                  count++,
+                  console.log(cartItems)
+                )}
+              />
             </Card>
           )}
         />
@@ -43,7 +64,6 @@ export default class ShoppingScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  card: {},
   col: {
     flex: 1,
   },
