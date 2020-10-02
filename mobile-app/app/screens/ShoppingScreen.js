@@ -21,6 +21,26 @@ export default function ShoppingScreen() {
   const [cartItems, setCartItems] = useState([]);
   const [costs, setCosts] = useState([]);
 
+  function removeItem(item) {
+    // var array = [...cartItems];
+    // var index = array.indexOf(item);
+    // if (index !== -1) {
+    //   setCartItems(array.slice(0, index).concat(array.slice(-index)));
+    // }
+
+    var filtered = cartItems.filter((thing) => thing.name != item.name);
+    setCartItems(filtered);
+  }
+
+  function removeCost(item) {
+    var array = [...costs];
+    var index = array.indexOf(item);
+    if (index !== -1) {
+      array.splice(index, 1);
+      setCosts(array);
+    }
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Button
@@ -59,6 +79,14 @@ export default function ShoppingScreen() {
                 ),
                 count++,
                 console.log(cartItems)
+              )}
+            />
+            <Button
+              type="clear"
+              title="Remove from Cart"
+              color="#eb67b4"
+              onPress={() => (
+                removeCost(item.cost), removeItem(item), console.log(cartItems)
               )}
             />
           </Card>
