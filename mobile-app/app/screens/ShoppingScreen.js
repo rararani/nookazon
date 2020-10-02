@@ -14,34 +14,23 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { nicknacks } from "../components/Nicknacks";
 
 var count = 0;
-var cartPrices = [];
-var cartItems = [];
 
 export default function ShoppingScreen() {
   const navigation = useNavigation();
   const route = useRoute();
-
-  function calculateTotal(cartPrices, count) {
-    var i;
-    var total = 0;
-    for (i = 0; i < count; i++) {
-      total = total + cartPrices[i];
-    }
-    return total;
-  }
+  const [cartItems, setCartItems] = useState([]);
+  const [costs, setCosts] = useState([]);
 
   return (
     <View style={styles.container}>
       <Button
         title="checkout"
-        onPress={() => (
-          console.log(cartPrices.reduce((a, b) => a + b, 0)),
+        onPress={() =>
           navigation.navigate("Checkout", {
-            totalCost: cartPrices.reduce((a, b) => a + b, 0),
             checkoutItems: cartItems,
-            count: count,
+            checkoutCosts: costs,
           })
-        )}
+        }
       />
       <FlatList
         data={nicknacks}
@@ -61,10 +50,15 @@ export default function ShoppingScreen() {
               type="clear"
               title="Add to Cart"
               onPress={() => (
-                cartItems.push(item.name),
-                cartPrices.push(item.cost),
+                setCosts(costs.concat(item.cost)),
+                setCartItems(
+                  cartItems.concat({
+                    name: item.name,
+                    cost: item.cost,
+                  })
+                ),
                 count++,
-                console.log(cartPrices)
+                console.log(cartItems)
               )}
             />
           </Card>

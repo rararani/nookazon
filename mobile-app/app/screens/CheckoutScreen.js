@@ -17,6 +17,11 @@ export default function CheckoutScreen() {
   const navigation = useNavigation();
   const route = useRoute();
   const URL = "http://10.0.2.2:3000";
+  const [cartItems, setCartItems] = useState(route.params.checkoutItems);
+  const [checkoutCosts, setCheckoutCosts] = useState(
+    route.params.checkoutCosts
+  );
+  const [total, setTotal] = useState(0);
 
   // const [total, setTotal] = useState();
   // const [loading, setLoading] = useState(true);
@@ -42,37 +47,33 @@ export default function CheckoutScreen() {
   //   },
 
   //   body: JSON.stringify({
-  //     prices: route.params.checkoutPrices,
-  //     length: route.params.checkoutPrices.length,
+  //     costs: checkoutCosts,
   //   }),
   // }).then((response) => {
-  //   console.log(response);
+  //   setTotal(response);
   // });
 
   return (
-    console.log(route.params.totalCost),
-    (
-      <View style={styles.container}>
-        <FlatList
-        // data={route.params.checkoutItems}
-        // renderItem={({ item }) => (
-        //   <Card key={item.key} style={styles.card}>
-        //     <Image
-        //       source={require("../assets/tom-nook.jpg")}
-        //       style={styles.image}
-        //     />
-        //     <Text style={{ marginBottom: 10, marginTop: 20 }} h2>
-        //       {item.name}
-        //     </Text>
-        //     <Text style={styles.price} h4>
-        //       {item.cost}
-        //     </Text>
-        //     <Button type="clear" title="Add to Cart" />
-        //   </Card>
-        // )}
-        />
-      </View>
-    )
+    <View style={styles.container}>
+      <FlatList
+      // data={route.params.checkoutItems}
+      // renderItem={({ item }) => (
+      //   <Card key={item.key} style={styles.card}>
+      //     <Image
+      //       source={require("../assets/tom-nook.jpg")}
+      //       style={styles.image}
+      //     />
+      //     <Text style={{ marginBottom: 10, marginTop: 20 }} h2>
+      //       {item.name}
+      //     </Text>
+      //     <Text style={styles.price} h4>
+      //       {item.cost}
+      //     </Text>
+      //     <Button type="clear" title="Add to Cart" />
+      //   </Card>
+      // )}
+      />
+    </View>
   );
 }
 
