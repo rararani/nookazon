@@ -53,27 +53,34 @@ export default function CheckoutScreen() {
   //   setTotal(response);
   // });
 
+  function calculateTotal(costs) {
+    return costs.reduce((a, b) => a + b, 0);
+  }
+
   return (
-    <View style={styles.container}>
-      <FlatList
-      // data={route.params.checkoutItems}
-      // renderItem={({ item }) => (
-      //   <Card key={item.key} style={styles.card}>
-      //     <Image
-      //       source={require("../assets/tom-nook.jpg")}
-      //       style={styles.image}
-      //     />
-      //     <Text style={{ marginBottom: 10, marginTop: 20 }} h2>
-      //       {item.name}
-      //     </Text>
-      //     <Text style={styles.price} h4>
-      //       {item.cost}
-      //     </Text>
-      //     <Button type="clear" title="Add to Cart" />
-      //   </Card>
-      // )}
-      />
-    </View>
+    console.log(calculateTotal(checkoutCosts)),
+    (
+      <View style={styles.container}>
+        <FlatList
+        // data={route.params.checkoutItems}
+        // renderItem={({ item }) => (
+        //   <Card key={item.key} style={styles.card}>
+        //     <Image
+        //       source={require("../assets/tom-nook.jpg")}
+        //       style={styles.image}
+        //     />
+        //     <Text style={{ marginBottom: 10, marginTop: 20 }} h2>
+        //       {item.name}
+        //     </Text>
+        //     <Text style={styles.price} h4>
+        //       {item.cost}
+        //     </Text>
+        //     <Button type="clear" title="Add to Cart" />
+        //   </Card>
+        // )}
+        />
+      </View>
+    )
   );
 }
 
