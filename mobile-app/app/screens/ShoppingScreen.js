@@ -22,7 +22,7 @@ export default function ShoppingScreen() {
   const [costs, setCosts] = useState([]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Button
         title="checkout"
         onPress={() =>
@@ -63,8 +63,9 @@ export default function ShoppingScreen() {
             />
           </Card>
         )}
+        keyExtractor={(item, index) => item.name + index}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 

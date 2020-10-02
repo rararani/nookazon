@@ -54,7 +54,13 @@ export default class App extends Component {
               headerRight: () => myButton,
             }}
           />
-          <Stack.Screen name="Checkout" component={CheckoutScreen} />
+          <Stack.Screen
+            name="Checkout"
+            component={CheckoutScreen}
+            options={{
+              title: "Your Shopping Bag",
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     );
