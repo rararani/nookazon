@@ -30,15 +30,13 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  var prices = JSON.parse(JSON.stringify(res.body.prices));
-  //   console.log(prices);
-  //   var length = Number(req.body.length);
-  //   var total = 0;
-  //   var i;
-  //   for (i = 0; i < length; i++) {
-  //     total = total + Number(prices[i]);
-  //   }
-  res.send(prices);
+  var costs = Array(req.body.costs);
+  var total = 0;
+  var i;
+  for (i = 0; i < costs.length; i++) {
+    total = total + costs[i];
+  }
+  res.send(total);
 });
 
 app.listen(PORT, () => {
