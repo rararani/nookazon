@@ -3,14 +3,13 @@ const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-require("./Product");
+require("./User");
 
 const PORT = 3000;
 const mongoURI =
   "mongodb+srv://rararani:lalaland101@cluster0.fzqt6.mongodb.net/<dbname>?retryWrites=true&w=majority";
 
-const Product = mongoose.model("product");
-var statusCode = 0;
+const User = mongoose.model("user");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,14 +28,21 @@ app.get("/", (req, res) => {
   console.log("welcome");
 });
 
-app.post("/", (req, res) => {
-  var costs = Array(req.body.costs);
-  var total = 0;
-  var i;
-  for (i = 0; i < costs.length; i++) {
-    total = total + costs[i];
-  }
-  res.send(total);
+app.post("/send", (req, res) => {
+  const user = User({
+    username: req.body.username,
+    password: req.body.password,
+    cartItems: req.body.cartItems,
+  });
+  user
+    .save()
+    .then((data) => {
+      console.log(data);
+      res.send({});
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.listen(PORT, () => {
