@@ -11,6 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
 import ShoppingScreen from "./app/screens/ShoppingScreen";
 import CheckoutScreen from "./app/screens/CheckoutScreen";
+import LoginScreen from "./app/screens/LoginScreen";
 
 const Stack = createStackNavigator();
 const myButton = (
@@ -60,6 +61,11 @@ export default class App extends Component {
             options={{
               title: "Your Shopping Bag",
             }}
+          />
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ title: "Register/Login" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
