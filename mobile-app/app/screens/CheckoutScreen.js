@@ -69,11 +69,15 @@ export default function CheckoutScreen() {
           renderItem={renderItem}
           keyExtractor={(item, index) => item.name + index}
         />
-        <Total name="Total" cost={total} />
-        <Button
-          title="PROCEED"
-          onPress={() => navigation.navigate("Login", { cartItems: cartItems })}
-        />
+        <ScrollView>
+          <Total name="Total" cost={total} />
+          <Button
+            title="PROCEED"
+            onPress={() =>
+              navigation.navigate("Login", { cartItems: cartItems })
+            }
+          />
+        </ScrollView>
       </SafeAreaView>
     )
   );
