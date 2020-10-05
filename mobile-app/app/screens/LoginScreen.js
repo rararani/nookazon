@@ -26,26 +26,62 @@ export default function LoginScreen() {
   const route = useRoute();
 
   const [userData, setUserData] = useState({
-    email: "",
+    username: "",
     password: "",
     cartItems: route.params.cartItems,
     secureTextEntry: true,
   });
 
+  const URL = "http://10.0.2.2/3000";
+
   const textInputChange = (value) => {
     if (value.length != 0) {
       setUserData({
         ...userData,
-        email: value,
+        username: value,
         check_textInputChange: true,
       });
     } else {
       setUserData({
         ...userData,
-        email: value,
+        username: value,
         check_textInputChange: false,
       });
     }
+  };
+
+  const pwdInputChange = (value) => {
+    if (value.length != 0) {
+      setUserData({
+        ...userData,
+        password: value,
+        check_textInputChange: true,
+      });
+    } else {
+      setUserData({
+        ...userData,
+        password: value,
+        check_textInputChange: false,
+      });
+    }
+  };
+
+  const submitData = () => {
+    fetch("http://10.0.2.2:3000/send", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: userData.username,
+        password: userData.password,
+        cartItems: userData.cartItems,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   return (
@@ -75,11 +111,19 @@ export default function LoginScreen() {
             style={styles.textInput}
             autoCapitalize="none"
             secureTextEntry={true}
+            onChangeText={(value) => (
+              pwdInputChange(value),
+              console.log(userData.password),
+              console.log(userData.cartItems)
+            )}
           />
           <Feather name="eye-off" color="grey" size={20} />
         </View>
       </View>
-      <Button title="Finish & Go back to Shopping" />
+      <Button
+        title="Finish + Go back to Shopping"
+        onPress={() => (submitData(), navigation.navigate("Nookazon"))}
+      />
     </View>
   );
 }

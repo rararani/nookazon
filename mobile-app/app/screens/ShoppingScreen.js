@@ -13,7 +13,10 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { nicknacks } from "../components/Nicknacks";
 
-var count = 0;
+const tom = "https://i.ibb.co/5R7mXLP/tom-nook.jpg";
+const froggy = "https://i.ibb.co/cyMVpQT/froggy-chair.jpg";
+const moon = "https://i.ibb.co/5FRvLzV/moon-chair.jpg";
+const slider = "https://i.ibb.co/RBxnJ22/kk-slider.jpg";
 
 export default function ShoppingScreen() {
   const navigation = useNavigation();
@@ -22,12 +25,6 @@ export default function ShoppingScreen() {
   const [costs, setCosts] = useState([]);
 
   function removeItem(item) {
-    // var array = [...cartItems];
-    // var index = array.indexOf(item);
-    // if (index !== -1) {
-    //   setCartItems(array.slice(0, index).concat(array.slice(-index)));
-    // }
-
     var filtered = cartItems.filter((thing) => thing.name != item.name);
     setCartItems(filtered);
   }
@@ -38,6 +35,18 @@ export default function ShoppingScreen() {
     if (index !== -1) {
       array.splice(index, 1);
       setCosts(array);
+    }
+  }
+
+  function getImage(item) {
+    if (item.name === "Tom Nook") {
+      return tom;
+    } else if (item.name === "Froggy Chair") {
+      return froggy;
+    } else if (item.name === "Crescent Moon Chair") {
+      return moon;
+    } else {
+      return slider;
     }
   }
 
@@ -56,10 +65,7 @@ export default function ShoppingScreen() {
         data={nicknacks}
         renderItem={({ item }) => (
           <Card key={item.key} style={styles.card}>
-            <Image
-              source={require("../assets/tom-nook.jpg")}
-              style={styles.image}
-            />
+            <Image source={{ uri: getImage(item) }} style={styles.image} />
             <Text style={{ marginBottom: 10, marginTop: 20 }} h2>
               {item.name}
             </Text>
@@ -77,7 +83,6 @@ export default function ShoppingScreen() {
                     cost: item.cost,
                   })
                 ),
-                count++,
                 console.log(cartItems)
               )}
             />

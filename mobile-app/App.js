@@ -52,7 +52,6 @@ export default class App extends Component {
             children={this.createShoppingStack}
             options={{
               title: "Nookazon",
-              headerRight: () => myButton,
             }}
           />
           <Stack.Screen
