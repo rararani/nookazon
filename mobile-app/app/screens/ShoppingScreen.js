@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
+  View,
   StyleSheet,
   Button,
   SafeAreaView,
@@ -17,14 +18,28 @@ const froggy = "https://i.ibb.co/cyMVpQT/froggy-chair.jpg";
 const moon = "https://i.ibb.co/5FRvLzV/moon-chair.jpg";
 const slider = "https://i.ibb.co/RBxnJ22/kk-slider.jpg";
 
+var nookKeys = [];
+var froggyKeys = [];
+var moonKeys = [];
+var sliderKeys = [];
+
 export default function ShoppingScreen() {
   const navigation = useNavigation();
+  const route = useRoute();
   const [cartItems, setCartItems] = useState([]);
   const [costs, setCosts] = useState([]);
 
   function removeItem(item) {
-    var filtered = cartItems.filter((thing) => thing.name != item.name);
-    setCartItems(filtered);
+    var array = [...cartItems];
+    var i;
+    for (i = 0; i < array.length; i++) {
+      if (array[i].name === item.name) {
+        array.splice(i, 1);
+        break;
+      }
+    }
+
+    setCartItems(array);
   }
 
   function removeCost(item) {
@@ -80,14 +95,17 @@ export default function ShoppingScreen() {
                     name: item.name,
                     cost: item.cost,
                   })
-                )
+                ),
+                console.log(cartItems)
               )}
             />
             <Button
               type="clear"
               title="Remove from Cart"
               color="#eb67b4"
-              onPress={() => (removeCost(item.cost), removeItem(item))}
+              onPress={() => (
+                removeCost(item.cost), removeItem(item), console.log(cartItems)
+              )}
             />
           </Card>
         )}
