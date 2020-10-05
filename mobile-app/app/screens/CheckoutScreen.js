@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
   FlatList,
-  Image,
   Text,
   Button,
-  ActivityIndicator,
   SafeAreaView,
-  SectionList,
 } from "react-native";
-import { Card, ThemeConsumer } from "react-native-elements";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { nicknacks } from "../components/Nicknacks";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function CheckoutScreen() {
@@ -139,50 +134,3 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 });
-
-// data={route.params.checkoutItems}
-// renderItem={({ item }) => (
-//   <Card key={item.key} style={styles.card}>
-//     <Image
-//       source={require("../assets/tom-nook.jpg")}
-//       style={styles.image}
-//     />
-//     <Text style={{ marginBottom: 10, marginTop: 20 }} h2>
-//       {item.name}
-//     </Text>
-//     <Text style={styles.price} h4>
-//       {item.cost}
-//     </Text>
-//     <Button type="clear" title="Add to Cart" />
-//   </Card>
-// )}
-
-// const [total, setTotal] = useState();
-// const [loading, setLoading] = useState(true);
-
-// useEffect(() => {
-//   fetch(URL, {
-//     price: route.params.checkoutPrices,
-//     length: route.params.checkoutPrices.length,
-//   })
-//     .then((res) => res.json())
-//     .then((result) => {
-//       console.log(result);
-//       setTotal(result);
-//       setLoading(false);
-//     });
-// });
-
-// fetch(URL, {
-//   method: "POST",
-//   headers: {
-//     Accept: "application/json",
-//     "Content-Type": "application/json",
-//   },
-
-//   body: JSON.stringify({
-//     costs: checkoutCosts,
-//   }),
-// }).then((response) => {
-//   setTotal(response);
-// });

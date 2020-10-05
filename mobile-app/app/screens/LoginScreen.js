@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
-  FlatList,
-  Image,
   Text,
   TextInput,
   Button,
-  ActivityIndicator,
-  SafeAreaView,
-  SectionList,
-  StatusBar,
   Platform,
 } from "react-native";
-
-import { Card, ThemeConsumer } from "react-native-elements";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { nicknacks } from "../components/Nicknacks";
-import { ScrollView } from "react-native-gesture-handler";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 
@@ -111,11 +101,7 @@ export default function LoginScreen() {
             style={styles.textInput}
             autoCapitalize="none"
             secureTextEntry={true}
-            onChangeText={(value) => (
-              pwdInputChange(value),
-              console.log(userData.password),
-              console.log(userData.cartItems)
-            )}
+            onChangeText={(value) => pwdInputChange(value)}
           />
           <Feather name="eye-off" color="grey" size={20} />
         </View>
