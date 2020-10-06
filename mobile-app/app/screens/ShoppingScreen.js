@@ -18,11 +18,6 @@ const froggy = "https://i.ibb.co/cyMVpQT/froggy-chair.jpg";
 const moon = "https://i.ibb.co/5FRvLzV/moon-chair.jpg";
 const slider = "https://i.ibb.co/RBxnJ22/kk-slider.jpg";
 
-var nookKeys = [];
-var froggyKeys = [];
-var moonKeys = [];
-var sliderKeys = [];
-
 export default function ShoppingScreen() {
   const navigation = useNavigation();
   const route = useRoute();
@@ -95,17 +90,14 @@ export default function ShoppingScreen() {
                     name: item.name,
                     cost: item.cost,
                   })
-                ),
-                console.log(cartItems)
+                )
               )}
             />
             <Button
               type="clear"
               title="Remove from Cart"
               color="#eb67b4"
-              onPress={() => (
-                removeCost(item.cost), removeItem(item), console.log(cartItems)
-              )}
+              onPress={() => (removeCost(item.cost), removeItem(item))}
             />
           </Card>
         )}

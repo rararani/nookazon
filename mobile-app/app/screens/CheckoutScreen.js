@@ -58,28 +58,23 @@ export default function CheckoutScreen() {
   const renderItem = ({ item }) => <Item name={item.name} cost={item.cost} />;
 
   return (
-    console.log(calculateTotal(checkoutCosts)),
-    (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.miniContainer}>
-          <Text style={styles.title}>Checkout</Text>
-        </View>
-        <FlatList
-          data={cartItems}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => item.name + index}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.miniContainer}>
+        <Text style={styles.title}>Checkout</Text>
+      </View>
+      <FlatList
+        data={cartItems}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => item.name + index}
+      />
+      <ScrollView>
+        <Total name="Total" cost={total} />
+        <Button
+          title="PROCEED"
+          onPress={() => navigation.navigate("Login", { cartItems: cartItems })}
         />
-        <ScrollView>
-          <Total name="Total" cost={total} />
-          <Button
-            title="PROCEED"
-            onPress={() =>
-              navigation.navigate("Login", { cartItems: cartItems })
-            }
-          />
-        </ScrollView>
-      </SafeAreaView>
-    )
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -139,50 +134,3 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 });
-
-// data={route.params.checkoutItems}
-// renderItem={({ item }) => (
-//   <Card key={item.key} style={styles.card}>
-//     <Image
-//       source={require("../assets/tom-nook.jpg")}
-//       style={styles.image}
-//     />
-//     <Text style={{ marginBottom: 10, marginTop: 20 }} h2>
-//       {item.name}
-//     </Text>
-//     <Text style={styles.price} h4>
-//       {item.cost}
-//     </Text>
-//     <Button type="clear" title="Add to Cart" />
-//   </Card>
-// )}
-
-// const [total, setTotal] = useState();
-// const [loading, setLoading] = useState(true);
-
-// useEffect(() => {
-//   fetch(URL, {
-//     price: route.params.checkoutPrices,
-//     length: route.params.checkoutPrices.length,
-//   })
-//     .then((res) => res.json())
-//     .then((result) => {
-//       console.log(result);
-//       setTotal(result);
-//       setLoading(false);
-//     });
-// });
-
-// fetch(URL, {
-//   method: "POST",
-//   headers: {
-//     Accept: "application/json",
-//     "Content-Type": "application/json",
-//   },
-
-//   body: JSON.stringify({
-//     costs: checkoutCosts,
-//   }),
-// }).then((response) => {
-//   setTotal(response);
-// });

@@ -10,7 +10,7 @@ import LoginScreen from "./app/screens/LoginScreen";
 const Stack = createStackNavigator();
 
 export default class App extends Component {
-  createShoppingStack = () => (
+  createShoppingStack = (props) => (
     <Stack.Navigator>
       <Stack.Screen name="Shop" component={ShoppingScreen} />
     </Stack.Navigator>
