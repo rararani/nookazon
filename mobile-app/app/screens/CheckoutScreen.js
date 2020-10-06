@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   SafeAreaView,
   SectionList,
+  NativeModules,
 } from "react-native";
 import { Card, ThemeConsumer } from "react-native-elements";
 import { useNavigation, useRoute } from "@react-navigation/native";
