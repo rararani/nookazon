@@ -1,27 +1,46 @@
-import * as React from "react";
-import { View, Text } from "react-native";
+import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { FontAwesome } from "@expo/vector-icons";
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
+import { createStackNavigator } from "@react-navigation/stack";
+import ShoppingScreen from "./app/screens/ShoppingScreen";
+import CheckoutScreen from "./app/screens/CheckoutScreen";
+import LoginScreen from "./app/screens/LoginScreen";
 
 const Stack = createStackNavigator();
 
-function App() {
-  console.log("App executed");
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+export default class App extends Component {
+  createShoppingStack = (props) => (
+    <Stack.Navigator>
+      <Stack.Screen name="Shop" component={ShoppingScreen} />
+    </Stack.Navigator>
   );
-}
 
-export default App;
+  render() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Nookazon"
+            children={this.createShoppingStack}
+            options={{
+              title: "Nookazon",
+            }}
+          />
+          <Stack.Screen
+            name="Checkout"
+            component={CheckoutScreen}
+            options={{
+              title: "Your Shopping Bag",
+            }}
+          />
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ title: "Register/Login" }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+}
