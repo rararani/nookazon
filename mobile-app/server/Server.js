@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 const User = mongoose.model("user");
 const mongoURI =
-  "mongodb+srv://rararani:lalaland101@cluster0.fzqt6.mongodb.net/<dbname>?retryWrites=true&w=majority";
+  "mongodb+srv://dbUser:g1pS9EMOI24Silk9@cluster0.qtdsy.mongodb.net/<dbname>?retryWrites=true&w=majority";
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
