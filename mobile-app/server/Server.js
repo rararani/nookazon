@@ -2,17 +2,15 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const PORT = 3000;
 
 require("./User");
 
-const PORT = 3000;
-const mongoURI =
-  "mongodb+srv://rararani:lalaland101@cluster0.fzqt6.mongodb.net/<dbname>?retryWrites=true&w=majority";
+app.use(bodyParser.json());
 
 const User = mongoose.model("user");
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+const mongoURI =
+  "mongodb+srv://rararani:lalaland101@cluster0.fzqt6.mongodb.net/<dbname>?retryWrites=true&w=majority";
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
@@ -25,11 +23,11 @@ mongoose.connection.on("error", (err) =>
 );
 
 app.get("/", (req, res) => {
-  console.log("welcome");
+  res.send("welcome");
 });
 
 app.post("/send", (req, res) => {
-  const user = User({
+  const user = new User({
     username: req.body.username,
     password: req.body.password,
     cartItems: req.body.cartItems,
@@ -38,13 +36,10 @@ app.post("/send", (req, res) => {
     .save()
     .then((data) => {
       console.log(data);
-      res.send({});
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => console.log(err));
 });
 
 app.listen(PORT, () => {
-  console.log("server running at port 3000");
+  console.log("server running at port " + PORT);
 });

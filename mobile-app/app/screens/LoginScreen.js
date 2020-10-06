@@ -22,8 +22,6 @@ export default function LoginScreen() {
     secureTextEntry: true,
   });
 
-  const URL = "http://10.0.2.2/3000";
-
   const textInputChange = (value) => {
     if (value.length != 0) {
       setUserData({
@@ -67,9 +65,7 @@ export default function LoginScreen() {
         password: userData.password,
         cartItems: userData.cartItems,
       }),
-    })
-      .then((res) => res.json())
-      .then((data) => {});
+    });
   };
 
   return (
