@@ -30,6 +30,7 @@ app.post("/send", (req, res) => {
     username: req.body.username,
     password: req.body.password,
     cartItems: req.body.cartItems,
+    total: req.body.total,
   });
   user
     .save()

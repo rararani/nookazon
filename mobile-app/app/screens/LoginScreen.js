@@ -19,6 +19,7 @@ export default function LoginScreen() {
     username: "",
     password: "",
     cartItems: route.params.cartItems,
+    total: route.params.total,
     secureTextEntry: true,
   });
 
@@ -64,6 +65,7 @@ export default function LoginScreen() {
         username: userData.username,
         password: userData.password,
         cartItems: userData.cartItems,
+        total: userData.total,
       }),
     });
   };

@@ -17,20 +17,23 @@ export default function CheckoutScreen() {
   const [checkoutCosts, setCheckoutCosts] = useState(
     route.params.checkoutCosts
   );
+  const [discountApplied, setDiscountApplied] = useState(false);
 
   function calculateTotal(costs) {
     return costs.reduce((a, b) => a + b, 0);
   }
 
   function discount() {
-    var i;
-    var array = [...checkoutCosts];
+    if (!discountApplied) {
+      var i;
+      var array = [...checkoutCosts];
 
-    for (i = 0; i < array.length; i++) {
-      array[i] = array[i] / 2;
+      for (i = 0; i < array.length; i++) {
+        array[i] = array[i] / 2;
+      }
+
+      setCheckoutCosts(array);
     }
-
-    setCheckoutCosts(array);
   }
 
   const Item = ({ name, cost }) => (
@@ -76,9 +79,14 @@ export default function CheckoutScreen() {
         <Total name="Total" cost={total} />
         <Button
           title="PROCEED"
-          onPress={() => navigation.navigate("Login", { cartItems: cartItems })}
+          onPress={() =>
+            navigation.navigate("Login", { cartItems: cartItems, total: total })
+          }
         />
-        <Button title="50% DISCOUNT" onPress={() => discount()} />
+        <Button
+          title="50% DISCOUNT"
+          onPress={() => (discount(), setDiscountApplied(true))}
+        />
       </ScrollView>
     </SafeAreaView>
   );
