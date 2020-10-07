@@ -4,7 +4,7 @@ This the checkout mobile app for assignment 1.
 
 ## Features
 
-Features include: Adding and Removing items, Entering user data, and storing that data in an external database. This application is also only a one-time use, you will have to refresh the app in order to reset your cart.
+Features include: Adding and Removing items, Entering user data, Discount, and storing that data in an external database. This application is also only a one-time use, you will have to refresh the app in order to reset your cart.
 
 NOTE: It is preferable that you run this on Windows and with an Android emulator. Although this was built in React Native, I do not have a Mac or iOS this application was developed and tested strictly for Android apps. 
 
