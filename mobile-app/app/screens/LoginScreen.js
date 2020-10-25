@@ -19,10 +19,9 @@ export default function LoginScreen() {
     username: "",
     password: "",
     cartItems: route.params.cartItems,
+    total: route.params.total,
     secureTextEntry: true,
   });
-
-  const URL = "http://10.0.2.2/3000";
 
   const textInputChange = (value) => {
     if (value.length != 0) {
@@ -66,10 +65,9 @@ export default function LoginScreen() {
         username: userData.username,
         password: userData.password,
         cartItems: userData.cartItems,
+        total: userData.total,
       }),
-    })
-      .then((res) => res.json())
-      .then((data) => {});
+    });
   };
 
   return (

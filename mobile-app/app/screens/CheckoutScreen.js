@@ -1,31 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
   FlatList,
-  Image,
   Text,
   Button,
-  ActivityIndicator,
   SafeAreaView,
-  SectionList,
 } from "react-native";
-import { Card, ThemeConsumer } from "react-native-elements";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { nicknacks } from "../components/Nicknacks";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function CheckoutScreen() {
   const navigation = useNavigation();
   const route = useRoute();
-  const URL = "http://10.0.2.2:3000";
   const [cartItems, setCartItems] = useState(route.params.checkoutItems);
   const [checkoutCosts, setCheckoutCosts] = useState(
     route.params.checkoutCosts
   );
+  const [discountApplied, setDiscountApplied] = useState(false);
 
   function calculateTotal(costs) {
     return costs.reduce((a, b) => a + b, 0);
+  }
+
+  function discount() {
+    if (!discountApplied) {
+      var i;
+      var array = [...checkoutCosts];
+
+      for (i = 0; i < array.length; i++) {
+        array[i] = array[i] / 2;
+      }
+
+      setCheckoutCosts(array);
+    }
   }
 
   const Item = ({ name, cost }) => (
@@ -71,7 +79,13 @@ export default function CheckoutScreen() {
         <Total name="Total" cost={total} />
         <Button
           title="PROCEED"
-          onPress={() => navigation.navigate("Login", { cartItems: cartItems })}
+          onPress={() =>
+            navigation.navigate("Login", { cartItems: cartItems, total: total })
+          }
+        />
+        <Button
+          title="50% DISCOUNT"
+          onPress={() => (discount(), setDiscountApplied(true))}
         />
       </ScrollView>
     </SafeAreaView>
