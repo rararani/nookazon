@@ -1,6 +1,6 @@
 # Nookazon - A React Native App
 
-This the checkout mobile app for assignment 1.
+A checkout mobile app.
 
 ## Features
 
